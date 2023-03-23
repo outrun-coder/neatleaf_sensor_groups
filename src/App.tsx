@@ -1,4 +1,6 @@
 import "./App.css";
+import Controls from "./components/controls";
+import SensorDisplay from "./components/sensor-display";
 
 const get_Data = async () => {
   const MEASUREMENTS = [
@@ -16,7 +18,8 @@ function App() {
   
   return (
     <div className="App">
-      YOUR CODE HERE
+      <Controls/>
+      <SensorDisplay/>
     </div>
   );
 }
