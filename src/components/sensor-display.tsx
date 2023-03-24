@@ -41,6 +41,9 @@ const SensorDisplay = (props: SensorDispProps) => {
     }
   }, []);
 
+  console.log('>> SENSOR_GROUPS:', sensorGroups);
+  
+
   return (
     <div className="sensor-display">
       <h1>Sensor Measurements</h1>
@@ -50,7 +53,25 @@ const SensorDisplay = (props: SensorDispProps) => {
         
         <div className="greenhouse-label">{group.greenhouse}</div>
 
-       
+        <ul className="measurement-list">
+          
+          {group.readings.filter((reading) => {
+            const matchesSearchFilter = sensorFilter === '' || reading.sensor === sensorFilter;
+            const nomOnly = !showNomOnly || reading.isNominal;
+            // console.log('>> SENSOR', reading.sensor);
+            // console.log('>> NOMINAL', reading.isNominal);
+            return (
+              matchesSearchFilter
+              && nomOnly
+            );
+          }).map((reading, i) => (
+            <li key={i} className="sensor-measurement">
+              <span className={`sensor-label ${(!reading.isNominal) ? 'alerted' : ''}`}>{reading.sensor}</span>
+              <span className="sensor-reading">{reading.measurement}</span>
+            </li>
+          ))}
+
+        </ul>
 
       </div>
       ))}

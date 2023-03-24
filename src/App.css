@@ -38,6 +38,10 @@
 }
 
 /* SONSOR - DISPLAY */
+.greenhouse-label {
+  font-weight: bold;
+}
+
 .measurement-list {
   list-style: none;
   padding: 0;
@@ -46,4 +50,8 @@
 .sensor-measurement {
   display: flex;
   justify-content: space-evenly;
+}
+
+.alerted {
+  color: red;
 }
