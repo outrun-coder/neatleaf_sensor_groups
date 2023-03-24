@@ -36,7 +36,6 @@ function App() {
       // get some data ...
       const data = await get_Data();
 
-      console.log('>> I have data:', data);
       setSensorData(data);
       
     } catch(err) {

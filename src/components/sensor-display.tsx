@@ -13,8 +13,6 @@ interface SensorGroup {
 
 const SensorDisplay = (props: SensorDispProps) => {
   const { sensorData, sensorFilter, showNomOnly } = props;
-  console.log('>> SENSOR_FILTER:', sensorFilter);
-  console.log('>> SHOW_NOMINAL_ONLY:', showNomOnly);
   
   const sensorGroups = sensorData.reduce((groupings: Array<SensorGroup>, reading: SensorReading): Array<SensorGroup> => {
     const { greenhouse } = reading;
@@ -40,10 +38,7 @@ const SensorDisplay = (props: SensorDispProps) => {
       ]
     }
   }, []);
-
-  console.log('>> SENSOR_GROUPS:', sensorGroups);
   
-
   return (
     <div className="sensor-display">
       <h1>Sensor Measurements</h1>
@@ -58,8 +53,6 @@ const SensorDisplay = (props: SensorDispProps) => {
           {group.readings.filter((reading) => {
             const matchesSearchFilter = sensorFilter === '' || reading.sensor === sensorFilter;
             const nomOnly = !showNomOnly || reading.isNominal;
-            // console.log('>> SENSOR', reading.sensor);
-            // console.log('>> NOMINAL', reading.isNominal);
             return (
               matchesSearchFilter
               && nomOnly
