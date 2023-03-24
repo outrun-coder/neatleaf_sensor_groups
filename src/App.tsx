@@ -4,7 +4,14 @@ import "./App.css";
 import Controls from "./components/controls";
 import SensorDisplay from "./components/sensor-display";
 
-const get_Data = async () => {
+interface SensorReading {
+  greenhouse: string;
+  measurement: string;
+  isNominal: boolean;
+  sensor: string;
+}
+
+const get_Data = async (): Promise<SensorReading[]> => {
   const MEASUREMENTS = [
     {greenhouse: 'Tomato Hut', measurement: '36 C', isNominal: false, sensor: 'Temp'},
     {greenhouse: 'Tomato Hut', measurement: '75 %', isNominal: true, sensor: 'Humidity'},
