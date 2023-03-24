@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import "./App.css";
 import Controls from "./components/controls";
 import SensorDisplay from "./components/sensor-display";
@@ -15,11 +17,46 @@ const get_Data = async () => {
 }
 
 function App() {
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [sensorData, setSensorData] = useState([{}]);
+
+  const requestSensorData = async () => {
+    try {
+      // get some data ...
+      const data = await get_Data();
+
+      console.log('>> I have data:', data);
+      setSensorData(data);
+      
+    } catch(err) {
+      console.error('(!) Sorry couldn\'t get data (!):', err);
+      
+    }
+
+    setIsLoading(false);
+  }
+
+  useEffect(() => {
+    if(isLoading) {
+      requestSensorData();
+    }
+  }, [isLoading]);
   
   return (
     <div className="App">
-      <Controls/>
-      <SensorDisplay/>
+
+      {isLoading ? (
+        <div className='text-center my-5'>
+          <Spinner animation="grow" />
+          <p className='my-2'>Loading Data...</p>
+        </div>
+      ) : (
+        <>
+          <Controls/>
+          <SensorDisplay/>
+        </>
+      )}
     </div>
   );
 }
