@@ -4,7 +4,7 @@ import "./App.css";
 import Controls from "./components/controls";
 import SensorDisplay from "./components/sensor-display";
 
-interface SensorReading {
+export interface SensorReading {
   greenhouse: string;
   measurement: string;
   isNominal: boolean;
