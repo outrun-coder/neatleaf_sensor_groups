@@ -28,6 +28,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [sensorData, setSensorData] = useState([{}]);
 
+  const [sensorFilter, setSensorFilter] = useState('');
+  const [showNomOnly, setShowNomOnly] = useState(false);
+
   const requestSensorData = async () => {
     try {
       // get some data ...
@@ -60,8 +63,13 @@ function App() {
         </div>
       ) : (
         <>
-          <Controls/>
-          <SensorDisplay/>
+          <Controls
+            setSensorFilter={setSensorFilter}
+            setShowNomOnly={setShowNomOnly}/>
+          <SensorDisplay
+            sensorData={sensorData}
+            sensorFilter={sensorFilter}
+            showNomOnly={showNomOnly}/>
         </>
       )}
     </div>

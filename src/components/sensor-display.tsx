@@ -1,6 +1,16 @@
 
+interface SensorDispProps {
+  sensorData: Array<any>;
+  sensorFilter: string;
+  showNomOnly: boolean;
+}
 
-const SensorDisplay = () => {
+const SensorDisplay = (props: SensorDispProps) => {
+  const { sensorFilter, showNomOnly } = props;
+  console.log('>> SENSOR_FILTER:', sensorFilter);
+  console.log('>> SHOW_NOMINAL_ONLY:', showNomOnly);
+  
+
   return (
     <div className="sensor-display">
       <h1>Sensor Measurements</h1>
