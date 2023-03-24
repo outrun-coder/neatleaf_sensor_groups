@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+/* SONSOR - DISPLAY */
+.measurement-list {
+  list-style: none;
+  padding: 0;
+}
+
+.sensor-measurement {
+  display: flex;
+  justify-content: space-evenly;
+}
